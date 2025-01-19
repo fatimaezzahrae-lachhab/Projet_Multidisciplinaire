@@ -1,0 +1,75 @@
+@prefix ex: <http://example.org/property/> .
+
+# Règle 1 : Si un produit a un sentiment positif, il est associé à une tendance à la hausse de la demande.
+[increasedDemandRule:
+    (?product ex:sentiment-category "Positif") ->
+    (?product ex:hasTrend ex:increasedDemand)
+]
+
+# Règle 2 : Si un produit a un sentiment négatif, il est associé à une tendance à la baisse de la demande.
+[decreasedDemandRule:
+    (?product ex:sentiment-category "Négatif") ->
+    (?product ex:hasTrend ex:decreasedDemand)
+]
+
+# Règle 3 : Si une marque reçoit plus de 200 commentaires positifs, elle a un potentiel d'augmentation de parts de marché.
+[marketShareIncreaseRule:
+    (?review ex:brandname ?brand),
+    (?review ex:sentiment-category "Positif"),
+    aggregate(?count >= 200) ->
+    (?brand ex:hasPotential ex:marketShareIncrease)
+]
+
+# Règle 4 : Si une marque reçoit plus de 200 commentaires négatifs consécutifs, elle risque une perte de parts de marché.
+[marketShareDecreaseRule:
+    (?review ex:brandname ?brand),
+    (?review ex:sentiment-category "Négatif"),
+    aggregate(?count >= 200) ->
+    (?brand ex:risk ex:marketShareLoss)
+]
+
+# Règle 5 : Si un produit a un prix supérieur à 1000 et une note supérieure à 4, il est considéré comme premium.
+[premiumProductRule:
+    (?product ex:price ?price),
+    (?product ex:rating ?rating),
+    math:greaterThan(?price, 1000),
+    math:greaterThan(?rating, 4) ->
+    (?product ex:isPremium true)
+]
+
+# Règle 6 : Si un produit est associé à une tendance à la hausse de la demande, il est suggéré pour des promotions.
+[promotionSuggestionRule:
+    (?product ex:hasTrend ex:increasedDemand) ->
+    (?product ex:suggestedAction ex:promote)
+]
+
+# Règle 7 : Si une marque reçoit des avis négatifs fréquents dans un pays spécifique, une intervention est recommandée dans ce pays.
+[countryInterventionRule:
+    (?review ex:brandname ?brand),
+    (?review ex:sentiment-category "Négatif"),
+    (?review ex:country ?country),
+    aggregate(?count >= 3) ->
+    (?brand ex:requiresIntervention ?country)
+]
+
+# Règle 8 : Si un utilisateur laisse plusieurs avis négatifs, il est identifié comme utilisateur insatisfait.
+[unhappyUserRule:
+    (?review ex:username ?user),
+    (?review ex:sentiment-category "Négatif"),
+    aggregate(?count >= 3) ->
+    (?user ex:isUnhappy true)
+]
+
+# Règle 9 : Si un produit a un prix compétitif (<500) et des avis positifs, il est recommandé pour une publicité ciblée.
+[targetedAdRule:
+    (?product ex:price ?price),
+    (?price < 500),
+    (?product ex:sentiment-category "Positif") ->
+    (?product ex:suggestedAction ex:targetedAd)
+]
+
+# Règle 10 : Si un produit a une tendance à la baisse de la demande, il est recommandé de revoir son positionnement.
+[repositioningSuggestionRule:
+    (?product ex:hasTrend ex:decreasedDemand) ->
+    (?product ex:suggestedAction ex:reposition)
+]

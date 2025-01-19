@@ -1,0 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.org/property/brandname> a rdf:Property .
+
+<http://example.org/property/country> a rdf:Property .
+
+<http://example.org/property/platform> a rdf:Property .
+
+<http://example.org/property/price> a rdf:Property .
+
+<http://example.org/property/rating> a rdf:Property .
+
+<http://example.org/property/sentiment-category> a rdf:Property .
+
+<http://example.org/property/text> a rdf:Property .
+
+<http://example.org/property/username> a rdf:Property .
+

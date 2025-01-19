@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:ex="http://example.org/ontology#">
+
+    <!-- Ontology Declaration -->
+    <rdf:Description rdf:about="http://example.org/ontology">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+        <rdfs:label>Product Review Ontology</rdfs:label>
+        <rdfs:comment>Ontology for representing product reviews, users, platforms, sentiments, and related concepts</rdfs:comment>
+    </rdf:Description>
+
+    <!-- Classes -->
+    <rdf:Description rdf:about="http://example.org/ontology#Product">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Product</rdfs:label>
+        <rdfs:comment>Represents a product reviewed by users.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#Brand">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Brand</rdfs:label>
+        <rdfs:comment>Represents the brand of a product.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#Review">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Review</rdfs:label>
+        <rdfs:comment>Represents a review written for a product.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#User">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>User</rdfs:label>
+        <rdfs:comment>Represents a user who writes reviews.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#Platform">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Platform</rdfs:label>
+        <rdfs:comment>Represents a social media platform where reviews are shared.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#Country">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Country</rdfs:label>
+        <rdfs:comment>Represents a country where a user resides.</rdfs:comment>
+    </rdf:Description>
+
+    <!-- Sentiment Class -->
+    <rdf:Description rdf:about="http://example.org/ontology#Sentiment">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Sentiment</rdfs:label>
+        <rdfs:comment>Represents the sentiment of a review, such as positive, negative, or neutral.</rdfs:comment>
+    </rdf:Description>
+
+    <!-- Object Properties -->
+    <rdf:Description rdf:about="http://example.org/ontology#hasBrand">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#Brand"/>
+        <rdfs:label>has brand</rdfs:label>
+        <rdfs:comment>Links a product to its brand.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#hasReview">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:label>has review</rdfs:label>
+        <rdfs:comment>Links a product to its reviews.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#writtenBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#User"/>
+        <rdfs:label>written by</rdfs:label>
+        <rdfs:comment>Links a review to the user who wrote it.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#sharedOn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#Platform"/>
+        <rdfs:label>shared on</rdfs:label>
+        <rdfs:comment>Links a review to the platform it was shared on.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#originatesFrom">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#User"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#Country"/>
+        <rdfs:label>originates from</rdfs:label>
+        <rdfs:comment>Links a user to their country.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#hasSentiment">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:range rdf:resource="http://example.org/ontology#Sentiment"/>
+        <rdfs:label>has sentiment</rdfs:label>
+        <rdfs:comment>Links a review to the sentiment associated with it.</rdfs:comment>
+    </rdf:Description>
+
+    <!-- Data Properties -->
+    <rdf:Description rdf:about="http://example.org/ontology#hasRating">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label>has rating</rdfs:label>
+        <rdfs:comment>Links a review to its rating.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#hasPrice">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:label>has price</rdfs:label>
+        <rdfs:comment>Links a product to its price.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#hasText">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#Review"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>has text</rdfs:label>
+        <rdfs:comment>Links a review to its content text.</rdfs:comment>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/ontology#hasUsername">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/ontology#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>has username</rdfs:label>
+        <rdfs:comment>Links a user to their username.</rdfs:comment>
+    </rdf:Description>
+
+</rdf:RDF>

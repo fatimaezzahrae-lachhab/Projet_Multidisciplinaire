@@ -1,0 +1,135 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem;
+  
+}
+.dashboard-title {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  background: linear-gradient(90deg, #8e44ad, #d1f2eb);
+  border: 2px solid #8e44ad;
+  border-radius: 8px;
+  color: black; /* Assurez-vous que le texte est lisible */
+}
+
+.dashboard-title h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;  /* Assurez-vous que la section prend toute la largeur disponible */
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.stats-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid #8e44ad;
+}
+
+.stats-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats-card p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.stats-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.chart-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid #8e44ad;
+  
+}
+
+.chart-container h3 {
+  margin-bottom: 1rem;
+}
+
+.chart {
+  width: 100%;
+  height: 400px;
+}
+
+.tables-section {
+  margin-top: 2rem;
+  width: 100%;  /* S'assurer que la section des tables prend toute la largeur */
+  max-height: 300px; /* Limiter la hauteur de la table */
+  overflow-y: auto;
+  display: block;  /* Permet un défilement horizontal si nécessaire */
+}
+
+table {
+  width: 100%;  /* La table occupe toute la largeur de son parent */
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+}
+
+table th, table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f8f9fa;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.chart-wide {
+  grid-column: span 2; /* Spans over two columns */
+}
+
+@media (max-width: 668px) {
+  .stats-section {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tables-section {
+    margin-top: 1rem; /* Réduire l'espacement sur petits écrans */
+  }
+}

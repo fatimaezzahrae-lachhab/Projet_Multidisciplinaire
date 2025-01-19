@@ -1,0 +1,138 @@
+<div class="dashboard">
+  <div class="dashboard-title">
+    <h1>Product Analysis and Market Trends</h1>
+  </div>
+  
+  <!-- Section 1: Cartes avec des icônes -->
+  <div class="section stats-section">
+    <div class="stats-card" style="background-color: #e8daef ;">
+      <i class="fa fa-cogs"></i>
+      <h3 >Total Products</h3>
+      <p>{{ totalProducts }}</p>
+    </div>
+    
+
+    <div class="stats-card" style="background-color: #d1f2eb  ;">
+      <i class="fa fa-dollar-sign"></i>
+      <h3>Average Price</h3>
+      <p>{{ averagePrice | currency }}</p>
+    </div>
+
+    <div class="stats-card" style="background-color: #fadbd8  ;">
+      <i class="fa fa-laptop"></i>
+      <h3>Most Used Platform</h3>
+      <p>{{ mostUsedPlatform }}</p>
+    </div>
+  </div>
+
+  <!-- Section 2: Sentiment Analysis et Product Count by Brand -->
+  <div class="section charts-section">
+    <div class="chart-container">
+      <h3 style="color: #8e44ad   ;">Sentiment Analysis</h3>
+      <canvas baseChart
+              [datasets]="donutChartData.datasets"
+              [labels]="donutChartData.labels"
+              [options]="donutChartOptions"
+              [type]="'doughnut'">
+      </canvas>
+    </div>
+
+    <div class="chart-container chart-wide">
+      <h3 style="color: #8e44ad   ;">Product Count by Brand</h3>
+      <canvas baseChart
+              [datasets]="lineChartData.datasets"
+              [labels]="lineChartData.labels"
+              [options]="lineChartOptions"
+              [type]="'line'">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Section 3: Trend by Country and Brand (Table) -->
+  <div class="section tables-section">
+    <div *ngIf="trendByCountryAndBrand.length > 0" class="table-responsive" >
+      <h3 style="color: #8e44ad   ;">Trend by Country and Brand</h3>
+      <table class="table table-hover" style="border-radius: 8px;">
+        <thead class="table">
+          <tr>
+            <th>Country</th>
+            <th>Brand</th>
+            <th>Trend Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trend of trendByCountryAndBrand">
+            <td>{{ trend.country }}</td>
+            <td>{{ trend.brand }}</td>
+            <td>{{ trend.trendCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 4: Trend by Country and Brand, Market Share by Brand, Product Count by Country -->
+  <div class="section charts-section">
+    <div class="chart-container">
+      <h3 style="color: #8e44ad   ;">Trend by Country and Brand</h3>
+      <canvas baseChart
+              [datasets]="trendChartData.datasets"
+              [labels]="trendChartData.labels"
+              [options]="trendChartOptions"
+              [type]="'line'">
+      </canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3 style="color: #8e44ad   ;">Product Count by Platform and Brand</h3>
+      <canvas baseChart
+              [datasets]="platformBrandChartData.datasets"
+              [labels]="platformBrandChartData.labels"
+              [options]="platformBrandChartOptions"
+              [type]="'bar'">
+      </canvas>
+    </div>
+
+    <div class="chart-container">
+      <h3 style="color: #8e44ad   ;">Product Count by Country</h3>
+      <canvas baseChart
+              [datasets]="countryProductChartData.datasets"
+              [labels]="countryProductChartData.labels"
+              [options]="countryProductChartOptions"
+              [type]="'bar'">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Section 5: Product Count by Platform and Brand, Product Count by Country -->
+  <div class="section charts-section">
+    <div class="chart-container">
+      <h3 style="color: #8e44ad   ;">Market Share by Brand</h3>
+      <canvas baseChart
+              [datasets]="marketShareChartData.datasets"
+              [labels]="marketShareChartData.labels"
+              [options]="marketShareChartOptions"
+              [type]="'doughnut'">
+      </canvas>
+    </div>
+
+    <!-- Product Count by Country Table -->
+  <div *ngIf="productCountByCountry.length > 0" class="section tables-section chart-wide"  >
+    <h3 style="color: #8e44ad   ;">Product Count by Country</h3>
+    <table class="table table-hover" style="border-radius: 8px;">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Product Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productCountByCountry">
+          <td>{{ product.country }}</td>
+          <td>{{ product.productCount }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
